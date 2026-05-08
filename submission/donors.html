@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blood_Donation - Donor Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f3f4f5",
+              "tertiary-container": "#0074a0",
+              "on-secondary-fixed": "#181a2e",
+              "on-tertiary-fixed": "#001e2d",
+              "on-tertiary-container": "#e0f1ff",
+              "inverse-primary": "#ffb3af",
+              "surface-container": "#edeeef",
+              "on-primary": "#ffffff",
+              "secondary": "#5b5d74",
+              "surface": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#80cfff",
+              "primary-fixed-dim": "#ffb3af",
+              "on-primary-fixed-variant": "#930018",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#ffeae8",
+              "error-container": "#ffdad6",
+              "secondary-fixed": "#e0e0fc",
+              "on-secondary-container": "#5f6178",
+              "outline-variant": "#e7bcba",
+              "background": "#f8f9fa",
+              "on-surface": "#191c1d",
+              "on-primary-fixed": "#410005",
+              "on-surface-variant": "#5d3f3d",
+              "on-secondary": "#ffffff",
+              "surface-variant": "#e1e3e4",
+              "on-secondary-fixed-variant": "#43455b",
+              "surface-container-high": "#e7e8e9",
+              "primary": "#ac001e",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#004c6b",
+              "primary-container": "#d90429",
+              "primary-fixed": "#ffdad7",
+              "on-error": "#ffffff",
+              "surface-tint": "#bf0022",
+              "secondary-fixed-dim": "#c4c4df",
+              "on-background": "#191c1d",
+              "surface-bright": "#f8f9fa",
+              "inverse-on-surface": "#f0f1f2",
+              "outline": "#926e6c",
+              "surface-container-lowest": "#ffffff",
+              "inverse-surface": "#2e3132",
+              "tertiary-fixed": "#c5e7ff",
+              "tertiary": "#005a7d",
+              "surface-dim": "#d9dadb",
+              "secondary-container": "#ddddf9",
+              "surface-container-highest": "#e1e3e4"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col relative">
+<!-- TopNavBar -->
+<nav class="bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<img alt="Blood_Donation Logo" class="h-20 w-auto object-contain italic" src="{% static 'logo.png' %}"/>
+<div class="hidden md:flex items-center gap-8 font-manrope text-base font-semibold tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-200" href="index.html">Home</a>
+<a class="text-red-600 dark:text-red-400 border-b-2 border-red-600 dark:border-red-400 pb-1" href="donors.html">Donors</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-200" href="register.html">Register</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-200" href="request.html">Request</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-30O" href="contact.html">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="scale-102 active:scale-98 transition-transform">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Blurred Background Content (SCREEN_3) -->
+<main class="flex-grow max-w-7xl mx-auto w-full px-6 py-12">
+<!-- Search & Filter Section -->
+<section class="mb-16">
+<div class="max-w-4xl">
+<h1 class="text-5xl font-extrabold tracking-tighter mb-4 text-on-surface">Find a Hero.</h1>
+<p class="text-lg text-secondary mb-10 max-w-2xl">Search our verified donor database to connect with life-savers in your immediate vicinity. Every second counts.</p>
+<div class="bg-surface-container-low rounded-xl p-6 md:p-8">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+<!-- Blood Group Filter -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-secondary mb-2">Blood Group</label>
+<select id="bloodGroupSearch" class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-lg focus:ring-2 focus:ring-primary transition-all text-on-surface appearance-none">
+<option>All Groups</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>O+</option>
+<option>O-</option>
+<option>AB+</option>
+<option>AB-</option>
+</select>
+</div>
+<!-- City Filter -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-secondary mb-2">City</label>
+<select id="citySearch" class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-lg focus:ring-2 focus:ring-primary transition-all text-on-surface appearance-none">
+<option>Select City</option>
+<option value="Delhi">Delhi</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Bangalore">Bangalore</option>
+    <option value="Hyderabad">Hyderabad</option>
+    <option value="Chennai">Chennai</option>
+    <option value="Kolkata">Kolkata</option>
+    <option value="Pune">Pune</option>
+    <option value="Ahmedabad">Ahmedabad</option>
+    <option value="Jaipur">Jaipur</option>
+    <option value="Lucknow">Lucknow</option>
+    <option value="Surat">Surat</option>
+    <option value="Kanpur">Kanpur</option>
+    <option value="Nagpur">Nagpur</option>
+    <option value="Indore">Indore</option>
+    <option value="Bhopal">Bhopal</option>
+    <option value="Patna">Patna</option>
+    <option value="Chandigarh">Chandigarh</option>
+    <option value="Noida">Noida</option>
+    <option value="Gurgaon">Gurgaon</option>
+    <option value="Kochi">Kochi</option>
+    <option value="Visakhapatnam">Visakhapatnam</option>
+    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+    <option value="Coimbatore">Coimbatore</option>
+    <option value="Vadodara">Vadodara</option>
+    <option value="Nashik">Nashik</option>
+    <option value="Ludhiana">Ludhiana</option>
+    <option value="Agra">Agra</option>
+    <option value="Varanasi">Varanasi</option>
+    <option value="Amritsar">Amritsar</option>
+</select>
+</div>
+<!-- State Filter -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-secondary mb-2">State</label>
+<select id="stateSearch" class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-lg focus:ring-2 focus:ring-primary transition-all text-on-surface appearance-none">
+<option>Select State</option>
+    <option value="Assam">Assam</option>
+    <option value="Bihar">Bihar</option>
+    <option value="Chhattisgarh">Chhattisgarh</option>
+    <option value="Goa">Goa</option>
+    <option value="Gujarat">Gujarat</option>
+    <option value="Haryana">Haryana</option>
+    <option value="Himachal Pradesh">Himachal Pradesh</option>
+    <option value="Jharkhand">Jharkhand</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Madhya Pradesh">Madhya Pradesh</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Manipur">Manipur</option>
+    <option value="Punjab">Punjab</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Telangana">Telangana</option>
+    <option value="Uttar Pradesh">Uttar Pradesh</option>
+    <option value="Uttarakhand">Uttarakhand</option>
+    <option value="West Bengal">West Bengal</option>
+    <option value="Chandigarh">Chandigarh</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+
+</select>
+</div>
+<div class="flex items-end">
+<button id="searchDonorsButton" type="button" class="w-full px-5 py-3 bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">search</span>
+Search
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Donor Grid Section -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<h2 class="text-2xl font-bold tracking-tight">Available Donors</h2>
+<div class="flex items-center gap-2">
+  <button id="gridViewBtn" onclick="setView('grid')" title="Card View" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-primary text-on-primary">
+    <span class="material-symbols-outlined text-xl">grid_view</span>
+  </button>
+  <button id="listViewBtn" onclick="setView('list')" title="List View" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-surface-container text-secondary hover:bg-surface-container-high">
+    <span class="material-symbols-outlined text-xl">view_list</span>
+  </button>
+</div>
+</div>
+<div id="donorGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="donor-card bg-surface-container-lowest rounded-xl p-8 transition-all group relative overflow-hidden border border-surface-container" data-name="Adrian Thorne" data-blood-group="O+" data-city="Mumbai" data-state="Maharashtra">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-xl font-extrabold text-on-surface mb-1">Adrian Thorne</h3>
+<div class="flex items-center gap-2 text-secondary text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span>Mumbai, Maharashtra</span>
+</div>
+</div>
+<div class="w-14 h-14 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-black text-xl shadow-lg shadow-primary/20">O+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high">
+<span class="text-secondary text-xs font-bold uppercase tracking-widest">Last Donation</span>
+<span class="text-on-surface font-semibold text-sm">Oct 12, 2023</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high">
+<span class="text-secondary text-xs font-bold uppercase tracking-widest">Status</span>
+<span class="text-tertiary font-bold text-xs bg-tertiary-container/10 px-2 py-1 rounded">ELIGIBLE</span>
+</div>
+</div>
+<button
+  type="button"
+  onclick="openDonorModal(this)"
+  class="donor-contact-button w-full py-4 bg-primary rounded-full text-on-primary font-bold tracking-tight flex items-center justify-center gap-2"
+  data-name="Adrian Thorne"
+  data-user-id="Static donor"
+  data-age="Not provided"
+  data-blood-group="O+"
+  data-city="Mumbai"
+  data-state="Maharashtra"
+  data-phone="Not provided"
+  data-last-donation="Oct 12, 2023"
+  data-availability="ELIGIBLE"
+>
+                        Contact Donor
+                        <span class="material-symbols-outlined text-lg" data-icon="send">send</span>
+</button>
+</div>
+<!-- Card 2 -->
+<div class="donor-card bg-surface-container-lowest rounded-xl p-8 transition-all group relative overflow-hidden border border-surface-container" data-name="Elena Rodriguez" data-blood-group="AB-" data-city="Bangalore" data-state="Karnataka">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-xl font-extrabold text-on-surface mb-1">Elena Rodriguez</h3>
+<div class="flex items-center gap-2 text-secondary text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span>Bangalore, Karnataka</span>
+</div>
+</div>
+<div class="w-14 h-14 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-black text-xl shadow-lg shadow-primary/20">AB-</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high">
+<span class="text-secondary text-xs font-bold uppercase tracking-widest">Last Donation</span>
+<span class="text-on-surface font-semibold text-sm">Jan 04, 2024</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high">
+<span class="text-secondary text-xs font-bold uppercase tracking-widest">Status</span>
+<span class="text-tertiary font-bold text-xs bg-tertiary-container/10 px-2 py-1 rounded">ELIGIBLE</span>
+</div>
+</div>
+<button
+  type="button"
+  onclick="openDonorModal(this)"
+  class="donor-contact-button w-full py-4 bg-primary rounded-full text-on-primary font-bold tracking-tight flex items-center justify-center gap-2"
+  data-name="Elena Rodriguez"
+  data-user-id="Static donor"
+  data-age="Not provided"
+  data-blood-group="AB-"
+  data-city="Bangalore"
+  data-state="Karnataka"
+  data-phone="Not provided"
+  data-last-donation="Jan 04, 2024"
+  data-availability="ELIGIBLE"
+>
+                        Contact Donor
+                        <span class="material-symbols-outlined text-lg" data-icon="send">send</span>
+</button>
+</div>
+</div>
+<div id="noDonorsFound" class="hidden mt-8 bg-surface-container-lowest rounded-xl p-8 text-center text-secondary font-semibold">
+No donors match your search.
+</div>
+<div class="mt-16 flex justify-center">
+<button id="loadMoreDonors" type="button" class="px-12 py-4 border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-on-primary transition-all duration-300">
+                    Load More Donors
+                </button>
+</div>
+</section>
+</main>
+<div id="donorModal" class="fixed inset-0 z-[60] items-center justify-center p-4" style="display: none;">
+<button id="donorModalBackdrop" class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" type="button" aria-label="Close donor details"></button>
+<div class="relative w-full max-w-3xl bg-surface-container-lowest rounded-3xl overflow-hidden shadow-2xl">
+<button id="donorModalClose" class="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary group transition-colors" type="button" aria-label="Close donor details">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-primary">close</span>
+</button>
+<div class="p-8 md:p-12">
+<div class="flex flex-col md:flex-row gap-8 md:items-center mb-8">
+<div class="w-28 h-28 rounded-3xl bg-primary-container text-on-primary flex items-center justify-center text-4xl font-black shadow-lg shadow-primary/20" id="modalBloodGroup">--</div>
+<div>
+<span class="text-primary font-bold tracking-[0.2em] text-xs uppercase mb-2 block">Donor Details</span>
+<h2 id="modalName" class="text-4xl font-black text-on-surface tracking-tight mb-2">Donor</h2>
+<p id="modalLocation" class="text-secondary font-semibold">Location</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-low p-5 rounded-2xl">
+<p class="text-secondary text-xs uppercase tracking-widest font-bold mb-1">User ID</p>
+<p id="modalUserId" class="text-on-surface font-extrabold">--</p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-2xl">
+<p class="text-secondary text-xs uppercase tracking-widest font-bold mb-1">Age</p>
+<p id="modalAge" class="text-on-surface font-extrabold">--</p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-2xl">
+<p class="text-secondary text-xs uppercase tracking-widest font-bold mb-1">Last Donation</p>
+<p id="modalLastDonation" class="text-on-surface font-extrabold">--</p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-2xl">
+<p class="text-secondary text-xs uppercase tracking-widest font-bold mb-1">Availability</p>
+<p id="modalAvailability" class="text-on-surface font-extrabold">--</p>
+</div>
+</div>
+<a id="modalCallLink" class="w-full bg-gradient-to-br from-[#ac001e] to-[#D90429] text-white py-4 rounded-full font-black text-lg flex items-center justify-center gap-3 shadow-lg hover:scale-[1.02] active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">call</span>
+<span id="modalPhone">Call Donor</span>
+</a>
+<div class="mt-8 bg-surface-container-high/50 p-5 rounded-2xl border border-outline-variant/20 flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary">security</span>
+<p class="text-secondary text-sm leading-relaxed">Please verify donor details before meeting. Always arrange donation at a registered blood bank or licensed hospital.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-slate-100 dark:bg-slate-900 full-width mt-auto">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
+<div class="flex flex-col gap-2">
+<div class="text-lg font-bold text-slate-900 dark:text-slate-50">Blood_Donation</div>
+<p class="font-manrope text-sm text-slate-500 dark:text-slate-400">© 2024 Blood_Donation. Life-Pulse Editorial.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-manrope text-sm text-slate-500 hover:text-slate-900 hover:underline transition-all opacity-80" href="#">Privacy Policy</a>
+<a class="font-manrope text-sm text-slate-500 hover:text-slate-900 hover:underline transition-all opacity-80" href="#">Terms of Service</a>
+<a class="font-manrope text-sm text-slate-500 hover:text-slate-900 hover:underline transition-all opacity-80" href="#">Donor Guidelines</a>
+<a class="font-manrope text-sm text-slate-500 hover:text-slate-900 hover:underline transition-all opacity-80" href="#">Emergency Contact</a>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="share">share</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="mail">mail</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+const donorModal = document.getElementById('donorModal');
+const donorModalClose = document.getElementById('donorModalClose');
+const donorModalBackdrop = document.getElementById('donorModalBackdrop');
+const modalName = document.getElementById('modalName');
+const modalUserId = document.getElementById('modalUserId');
+const modalAge = document.getElementById('modalAge');
+const modalBloodGroup = document.getElementById('modalBloodGroup');
+const modalLocation = document.getElementById('modalLocation');
+const modalLastDonation = document.getElementById('modalLastDonation');
+const modalAvailability = document.getElementById('modalAvailability');
+const modalPhone = document.getElementById('modalPhone');
+const modalCallLink = document.getElementById('modalCallLink');
+
+function openDonorModal(button) {
+  modalName.textContent = button.dataset.name;
+  modalUserId.textContent = button.dataset.userId;
+  modalAge.textContent = button.dataset.age;
+  modalBloodGroup.textContent = button.dataset.bloodGroup;
+  modalLocation.textContent = `${button.dataset.city}, ${button.dataset.state}`;
+  modalLastDonation.textContent = button.dataset.lastDonation;
+  modalAvailability.textContent = button.dataset.availability;
+  modalPhone.textContent = button.dataset.phone;
+  modalCallLink.href = button.dataset.phone === 'Not provided' ? '#' : `tel:${button.dataset.phone}`;
+  donorModal.style.display = 'flex';
+}
+
+function closeDonorModal() {
+  donorModal.style.display = 'none';
+}
+
+document.querySelectorAll('.donor-contact-button').forEach((button) => {
+  button.addEventListener('click', () => openDonorModal(button));
+});
+
+donorModalClose.addEventListener('click', closeDonorModal);
+donorModalBackdrop.addEventListener('click', closeDonorModal);
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeDonorModal();
+  }
+});
+
+const donorCards = Array.from(document.querySelectorAll('.donor-card'));
+const loadMoreDonors = document.getElementById('loadMoreDonors');
+const searchDonorsButton = document.getElementById('searchDonorsButton');
+const bloodGroupSearch = document.getElementById('bloodGroupSearch');
+const citySearch = document.getElementById('citySearch');
+const stateSearch = document.getElementById('stateSearch');
+const noDonorsFound = document.getElementById('noDonorsFound');
+let visibleDonorCards = donorCards;
+let donorsExpanded = false;
+
+function getInitialVisibleDonors() {
+  const donorGrid = donorCards[0]?.parentElement;
+  if (!donorGrid) {
+    return 0;
+  }
+
+  const columns = getComputedStyle(donorGrid).gridTemplateColumns.split(' ').filter(Boolean).length || 1;
+  return columns * 2;
+}
+
+function isDefaultSelectValue(value) {
+  const normalized = value.toLowerCase();
+  return !normalized || normalized.startsWith('select') || normalized.startsWith('all');
+}
+
+function updateVisibleDonors() {
+  const initialVisibleDonors = getInitialVisibleDonors();
+
+  donorCards.forEach((card) => {
+    const visibleIndex = visibleDonorCards.indexOf(card);
+    const shouldShow = visibleIndex !== -1 && (donorsExpanded || visibleIndex < initialVisibleDonors);
+    card.style.display = shouldShow ? '' : 'none';
+  });
+
+  noDonorsFound?.classList.toggle('hidden', visibleDonorCards.length > 0);
+
+  if (!loadMoreDonors || donorsExpanded || visibleDonorCards.length <= initialVisibleDonors) {
+    loadMoreDonors?.classList.add('hidden');
+  } else {
+    loadMoreDonors.classList.remove('hidden');
+  }
+}
+
+function searchDonors() {
+  const bloodGroup = bloodGroupSearch.value.trim().toLowerCase();
+  const city = citySearch.value.trim().toLowerCase();
+  const state = stateSearch.value.trim().toLowerCase();
+
+  visibleDonorCards = donorCards.filter((card) => {
+    const matchesBloodGroup = isDefaultSelectValue(bloodGroup) || card.dataset.bloodGroup.toLowerCase() === bloodGroup;
+    const matchesCity = isDefaultSelectValue(city) || card.dataset.city.toLowerCase() === city;
+    const matchesState = isDefaultSelectValue(state) || card.dataset.state.toLowerCase() === state;
+    return matchesBloodGroup && matchesCity && matchesState;
+  });
+
+  donorsExpanded = false;
+  updateVisibleDonors();
+}
+
+loadMoreDonors?.addEventListener('click', () => {
+  donorsExpanded = true;
+  updateVisibleDonors();
+});
+
+searchDonorsButton?.addEventListener('click', searchDonors);
+
+updateVisibleDonors();
+
+function setView(mode) {
+  const grid = document.getElementById('donorGrid');
+  const gridBtn = document.getElementById('gridViewBtn');
+  const listBtn = document.getElementById('listViewBtn');
+
+  if (mode === 'grid') {
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+    document.querySelectorAll('.donor-card').forEach(card => {
+      card.className = card.className.replace('flex items-center gap-6 p-5', 'p-8');
+      card.querySelector('.donor-card-details')?.classList.remove('flex-1');
+      card.querySelector('.donor-contact-button')?.classList.remove('hidden');
+      card.querySelector('.donor-list-contact')?.remove();
+      const badge = card.querySelector('.blood-badge');
+      if (badge) { badge.className = 'w-14 h-14 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-black text-xl shadow-lg shadow-primary/20'; }
+    });
+    gridBtn.className = 'w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-primary text-on-primary';
+    listBtn.className = 'w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-surface-container text-secondary hover:bg-surface-container-high';
+  } else {
+    grid.className = 'flex flex-col gap-4';
+    document.querySelectorAll('.donor-card').forEach(card => {
+      const name = card.dataset.name;
+      const bloodGroup = card.dataset.bloodGroup;
+      const city = card.dataset.city;
+      const state = card.dataset.state;
+      const btn = card.querySelector('.donor-contact-button');
+      const lastDonation = btn?.dataset.lastDonation || '--';
+      const availability = btn?.dataset.availability || '--';
+
+      card.innerHTML = `
+        <div class="flex items-center gap-6">
+          <div class="w-14 h-14 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-black text-lg shadow-md flex-shrink-0">${bloodGroup}</div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base font-extrabold text-on-surface">${name}</h3>
+            <div class="flex items-center gap-1 text-secondary text-sm">
+              <span class="material-symbols-outlined text-sm">location_on</span>
+              <span>${city}, ${state}</span>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center gap-8 text-sm">
+            <div class="text-center">
+              <p class="text-secondary text-xs uppercase tracking-wider font-bold">Last Donation</p>
+              <p class="text-on-surface font-semibold">${lastDonation}</p>
+            </div>
+            <div class="text-center">
+              <p class="text-secondary text-xs uppercase tracking-wider font-bold">Status</p>
+              <span class="text-tertiary font-bold text-xs bg-tertiary-container/10 px-2 py-1 rounded">${availability}</span>
+            </div>
+          </div>
+          <button
+            type="button"
+            onclick="openDonorModal(this)"
+            class="donor-contact-button flex-shrink-0 px-5 py-2 bg-primary rounded-full text-on-primary font-bold text-sm flex items-center gap-2"
+            data-name="${name}"
+            data-user-id="${btn?.dataset.userId || 'Static donor'}"
+            data-age="${btn?.dataset.age || 'Not provided'}"
+            data-blood-group="${bloodGroup}"
+            data-city="${city}"
+            data-state="${state}"
+            data-phone="${btn?.dataset.phone || 'Not provided'}"
+            data-last-donation="${lastDonation}"
+            data-availability="${availability}"
+          >
+            Contact
+            <span class="material-symbols-outlined text-sm">send</span>
+          </button>
+        </div>`;
+      card.className = 'donor-card bg-surface-container-lowest rounded-xl p-5 transition-all border border-surface-container';
+    });
+    gridBtn.className = 'w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-surface-container text-secondary hover:bg-surface-container-high';
+    listBtn.className = 'w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-primary text-on-primary';
+  }
+}
+</script>
+</body></html>

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python manage.py makemigrations blood_donation)",
+      "Bash(python manage.py migrate)",
+      "Bash(pip install *)"
+    ]
+  }
+}

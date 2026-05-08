@@ -1,0 +1,191 @@
+{%load static%}
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Life-Pulse Blood Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "background": "#f8f9fa",
+              "on-primary-container": "#ffeae8",
+              "secondary-container": "#ddddf9",
+              "on-tertiary-fixed-variant": "#004c6b",
+              "on-secondary-fixed-variant": "#43455b",
+              "on-background": "#191c1d",
+              "inverse-on-surface": "#f0f1f2",
+              "on-surface-variant": "#5d3f3d",
+              "on-surface": "#191c1d",
+              "secondary": "#5b5d74",
+              "surface-bright": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#c5e7ff",
+              "tertiary": "#005a7d",
+              "on-secondary-fixed": "#181a2e",
+              "inverse-surface": "#2e3132",
+              "surface-container-highest": "#e1e3e4",
+              "secondary-fixed": "#e0e0fc",
+              "tertiary-container": "#0074a0",
+              "on-secondary-container": "#5f6178",
+              "secondary-fixed-dim": "#c4c4df",
+              "primary-fixed-dim": "#ffb3af",
+              "tertiary-fixed-dim": "#80cfff",
+              "primary-container": "#d90429",
+              "on-primary": "#ffffff",
+              "inverse-primary": "#ffb3af",
+              "surface": "#f8f9fa",
+              "primary": "#ac001e",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#001e2d",
+              "outline": "#926e6c",
+              "on-primary-fixed": "#410005",
+              "on-error": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "surface-container-high": "#e7e8e9",
+              "on-tertiary-container": "#e0f1ff",
+              "surface-variant": "#e1e3e4",
+              "error-container": "#ffdad6",
+              "on-primary-fixed-variant": "#930018",
+              "outline-variant": "#e7bcba",
+              "surface-container-low": "#f3f4f5",
+              "surface-container": "#edeeef",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-tint": "#bf0022",
+              "primary-fixed": "#ffdad7"
+            },
+            fontFamily: {
+              "headline": ["Manrope", "sans-serif"],
+              "body": ["Manrope", "sans-serif"],
+              "label": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            scale: {
+              '102': '1.02',
+              '98': '0.98',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Manrope', sans-serif;
+      }
+      .editorial-shadow {
+        box-shadow: 0 12px 32px rgba(43, 45, 66, 0.06);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen antialiased">
+<!-- Top Navigation Bar -->
+<header class="w-full top-0 px-8 py-4 bg-slate-50 dark:bg-slate-950 sticky z-50">
+<nav class="flex justify-between items-center w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<img alt="Blood_Donation Logo" class="h-20 w-auto object-contain italic" src="{% static 'logo.png' %}"/></div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-red-600 transition-colors duration-200" href="{% url 'home' %}">Home</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-red-600 transition-colors duration-200" href="{% url 'donor' %}">Donors</a>
+
+<a class="px-6 py-2 bg-primary-container text-on-primary rounded-full font-bold text-sm scale-102 transition-transform duration-200 active:scale-98" href="{% url 'signup' %}">Sign Up</a>
+</div>
+</nav>
+</header>
+<main class="flex-grow flex items-center justify-center relative overflow-hidden py-20 px-4">
+<!-- Abstract Background Elements -->
+<div class="absolute inset-0 z-0 pointer-events-none">
+<div class="absolute top-[-10%] left-[-5%] w-[40%] h-[60%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[60%] bg-tertiary/5 rounded-full blur-[120px]"></div>
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHXH4kRTWWc47x7BeNLXp71Ym_PROD1cRExgN6wdY_Dibj0IBBJOv2pRD3vQsMNSmy-T_5nV1FrSK_nl8R2YCewN6rzwP9sSYYBIz0dhOThHfMAH5Df-n60e-G60FiUpF8fKvYtYzaBmGupmKynf9tZNyNUUcREJpgLynr0OdzuiiVvzacan1zAYwnUyZzyuYPJooYIPm2g66CyY2cib2vr_iFImwabhQZPRtQoF1b41r-mDjYCjvd7s09SiRJIC2w_3M_KZ3XuVs');"></div>
+</div>
+<!-- Login Card -->
+<div class="w-full max-w-md z-10">
+<div class="surface-container-lowest glass-card rounded-3xl p-8 md:p-12 editorial-shadow border border-white/20">
+<div class="mb-10 text-center">
+<div class="inline-flex items-center justify-center p-4 bg-primary-fixed-dim/20 rounded-full mb-6">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="bloodtype" style="font-variation-settings: 'FILL' 1;">bloodtype</span>
+</div>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Welcome Back</h1>
+<p class="text-secondary font-medium tracking-wide label-md">Continue your life-saving journey</p>
+</div>
+<form class="space-y-6" method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<!-- Email Field -->
+<div class="space-y-1.5">
+<label class="text-xs font-bold uppercase tracking-widest text-secondary ml-1" for="email">Email Address</label>
+<div class="relative">
+<input class="w-full h-14 px-4 bg-surface-container-high border-b-2 border-transparent focus:border-primary focus:ring-0 focus:bg-surface-container-highest transition-all duration-200 text-on-surface font-medium rounded-t-lg" id="email" placeholder="name@vitalpulse.com" type="email"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-secondary/40" data-icon="mail">mail</span>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-end mb-1">
+<label class="text-xs font-bold uppercase tracking-widest text-secondary ml-1" for="password">Password</label>
+<a class="text-xs font-bold text-primary hover:text-primary-container transition-colors tracking-wide" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<input class="w-full h-14 px-4 bg-surface-container-high border-b-2 border-transparent focus:border-primary focus:ring-0 focus:bg-surface-container-highest transition-all duration-200 text-on-surface font-medium rounded-t-lg" id="password" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-secondary/40" data-icon="lock">lock</span>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="w-full h-14 mt-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-lg rounded-full scale-102 hover:scale-105 transition-all duration-300 active:scale-98 shadow-lg shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+                        Login
+                        <span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<div class="mt-10 pt-8 border-t border-surface-container-highest text-center">
+<p class="text-secondary font-medium">
+                        Don't have an account? 
+                        <a class="text-primary font-bold hover:underline ml-1" href="{% url 'register' %}">Register</a>
+</p>
+</div>
+</div>
+<!-- Trust Badges / Info -->
+<div class="mt-8 flex justify-center items-center gap-6 opacity-60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Secure Portal</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="encrypted">encrypted</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">End-to-End Encrypted</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Section -->
+<footer class="w-full py-12 px-8 bg-slate-100 dark:bg-slate-900">
+<div class="flex flex-col md:flex-row justify-between items-center w-full max-w-7xl mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-2">
+<img alt="Blood_Donation Logo" class="h-14 w-auto object-contain mb-2" src="{% static 'logo.png' %}"/>
+<p class="text-slate-500 dark:text-slate-400 text-sm tracking-wide text-center md:text-left">
+                    © 2024 Life-Pulse Blood Management. All rights reserved.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 text-sm tracking-wide hover:text-slate-900 dark:hover:text-slate-50 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm tracking-wide hover:text-slate-900 dark:hover:text-slate-50 transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm tracking-wide hover:text-slate-900 dark:hover:text-slate-50 transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

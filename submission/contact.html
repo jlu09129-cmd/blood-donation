@@ -1,0 +1,267 @@
+{%load static%}
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us | Blood_Donation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#e1e3e4",
+              "on-background": "#191c1d",
+              "primary-fixed-dim": "#ffb3af",
+              "tertiary-fixed-dim": "#80cfff",
+              "secondary-fixed": "#e0e0fc",
+              "on-secondary-container": "#5f6178",
+              "surface": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#930018",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#0074a0",
+              "on-secondary-fixed-variant": "#43455b",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#004c6b",
+              "on-tertiary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "outline": "#926e6c",
+              "on-tertiary-fixed": "#001e2d",
+              "secondary-container": "#ddddf9",
+              "secondary-fixed-dim": "#c4c4df",
+              "outline-variant": "#e7bcba",
+              "on-primary-fixed": "#410005",
+              "surface-container-high": "#e7e8e9",
+              "background": "#f8f9fa",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#c5e7ff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#ffdad7",
+              "on-surface-variant": "#5d3f3d",
+              "surface-bright": "#f8f9fa",
+              "on-tertiary-container": "#e0f1ff",
+              "secondary": "#5b5d74",
+              "primary": "#ac001e",
+              "inverse-primary": "#ffb3af",
+              "on-secondary": "#ffffff",
+              "surface-tint": "#bf0022",
+              "surface-container-low": "#f3f4f5",
+              "on-secondary-fixed": "#181a2e",
+              "on-primary-container": "#ffeae8",
+              "on-surface": "#191c1d",
+              "inverse-surface": "#2e3132",
+              "surface-container-highest": "#e1e3e4",
+              "tertiary": "#005a7d",
+              "surface-dim": "#d9dadb",
+              "surface-container": "#edeeef",
+              "primary-container": "#d90429"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-nav {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .tonal-shift-bg {
+        background-color: #f3f4f5;
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<nav class="bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none transition-transform">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<img alt="Blood_Donation Logo" class="h-20 w-auto object-contain italic" src="{% static 'logo.png' %}"/>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-manrope text-base font-semibold tracking-tight text-slate-600 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-200 scale-102 active:scale-98 transition-transform" href="{% url 'home' %}">Home</a>
+<a class="font-manrope text-base font-semibold tracking-tight text-slate-600 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-200 scale-102 active:scale-98 transition-transform" href="{% url 'donor' %}">Donors</a>
+<a class="font-manrope text-base font-semibold tracking-tight text-slate-600 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-200 scale-102 active:scale-98 transition-transform" href="{% url 'register' %}">Register</a>
+<a class="font-manrope text-base font-semibold tracking-tight text-slate-600 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-200 scale-102 active:scale-98 transition-transform" href="{% url 'request' %}">Request</a>
+<a class="font-manrope text-base font-semibold tracking-tight text-red-600 dark:text-red-400 border-b-2 border-red-600 dark:border-red-400 pb-1 scale-102 active:scale-98 transition-transform" href="{% url 'contact' %}">Contact</a>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-full font-bold scale-102 active:scale-98 transition-all duration-200">
+                Donate Now
+            </button>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Hero Header -->
+<header class="max-w-7xl mx-auto px-8 py-16 md:py-24">
+<div class="max-w-3xl">
+<span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold tracking-widest uppercase mb-6">Support Center</span>
+<h1 class="text-6xl md:text-8xl font-black text-on-background tracking-tighter leading-none mb-8">
+                    Get in <span class="text-primary">Touch.</span>
+</h1>
+<p class="text-xl md:text-2xl text-secondary leading-relaxed font-light">
+                    Every second counts when saving lives. Whether you're looking to donate, request blood, or partner with us, our team is ready to support your journey.
+                </p>
+</div>
+</header>
+<!-- Main Content Grid -->
+<section class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Contact Form Card -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-3xl p-8 md:p-12 shadow-sm">
+<h2 class="text-3xl font-bold mb-8 tracking-tight">Send us a message</h2>
+{% if messages %}
+<div class="mb-6 space-y-3">
+{% for message in messages %}
+<div class="rounded-lg bg-green-100 px-4 py-3 text-sm font-semibold text-green-800">
+{{ message }}
+</div>
+{% endfor %}
+</div>
+{% endif %}
+<form action="{% url 'contact' %}" method="post" class="space-y-6">
+{% csrf_token %}
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="group">
+<label class="label-sm font-semibold text-primary mb-2 block">Full Name</label>
+<input name="name" class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary transition-all text-on-surface" placeholder="John Doe" required type="text"/>
+</div>
+<div class="group">
+<label class="label-sm font-semibold text-primary mb-2 block">Email Address</label>
+<input name="email" class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary transition-all text-on-surface" placeholder="john@gmail.com" required type="email"/>
+</div>
+</div>
+<div class="group">
+<label class="label-sm font-semibold text-primary mb-2 block">Subject</label>
+<input name="subject" class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary transition-all text-on-surface" placeholder="How can we help?" required type="text"/>
+</div>
+<div class="group">
+<label class="label-sm font-semibold text-primary mb-2 block">Message</label>
+<textarea name="message" class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary transition-all text-on-surface" placeholder="Your message here..." required rows="5"></textarea>
+</div>
+<button class="w-full md:w-auto bg-gradient-to-r from-primary to-primary-container text-on-primary px-10 py-4 rounded-full font-bold text-lg hover:scale-102 active:scale-98 transition-all shadow-lg shadow-primary/20" type="submit">
+                            Send Message
+                        </button>
+</form>
+</div>
+<!-- Contact Details & FAQ -->
+<div class="lg:col-span-5 space-y-8">
+<!-- Cards Stack -->
+<div class="bg-surface-container-low rounded-3xl p-8 space-y-8">
+<!-- Address -->
+<div class="flex gap-6">
+<div class="h-14 w-14 shrink-0 rounded-2xl bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-3xl">location_on</span>
+</div>
+<div>
+<h4 class="font-bold text-xl mb-1">Office Address</h4>
+<p class="text-secondary leading-relaxed">742 Life-Pulse Tower, Medical District<br/> NY 10001, India</p>
+</div>
+</div>
+<!-- Phone -->
+<div class="flex gap-6">
+<div class="h-14 w-14 shrink-0 rounded-2xl bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-3xl">call</span>
+</div>
+<div>
+<h4 class="font-bold text-xl mb-1">24/7 Helpline</h4>
+<p class="text-secondary leading-relaxed font-semibold text-lg tracking-tight">+91 98765 43210</p>
+<p class="text-sm text-secondary/60">Emergency line available around the clock</p>
+</div>
+</div>
+<!-- Email -->
+<div class="flex gap-6">
+<div class="h-14 w-14 shrink-0 rounded-2xl bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-3xl">mail</span>
+</div>
+<div>
+<h4 class="font-bold text-xl mb-1">Support Email</h4>
+<p class="text-secondary leading-relaxed font-semibold">ABC@gmail.com</p>
+<p class="text-sm text-secondary/60">Expect a response within 2 hours</p>
+</div>
+</div>
+</div>
+<!-- FAQ CTA Card -->
+<div class="relative overflow-hidden bg-on-background rounded-3xl p-8 text-surface group cursor-pointer transition-all hover:scale-[1.01]">
+<div class="relative z-10">
+<h3 class="text-2xl font-bold mb-2">Have common questions?</h3>
+<p class="text-surface/70 mb-6">Find quick answers about donation eligibility, preparation, and more.</p>
+<a class="inline-flex items-center gap-2 font-bold text-primary group-hover:gap-4 transition-all" href="#">
+                                Visit Help Center
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<!-- Abstract background element -->
+<div class="absolute -right-8 -bottom-8 w-48 h-48 bg-primary/20 rounded-full blur-3xl"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+<section class="max-w-7xl mx-auto px-8 mt-20">
+<div class="rounded-3xl overflow-hidden h-[500px] relative shadow-inner bg-surface-container-high border-8 border-surface-container-lowest">
+<div class="absolute inset-0 grayscale opacity-80" data-alt="minimalist overhead map view of a modern urban city center with clean streets and grey-toned architecture" data-location="New York" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmQBFgBOrjOKC5DGtsdh4LoLq-nr7-rJaNCYVVvnbO-Ylw69JfUZFqjq0KRhDbhoxZIyiAprJNiV4vgCT_kf7FNeRctnlB00JeHfwERWqVXdKD9BnBaTpZPGzwLZA06QzL-cFARBQ0ENiFhR1YkZsRmgLNRnIjU29hguJnFjbnyXHDK3XR5O4zoJgAYhorsYdgIbY5Ws3ZkF3Xm5P-huVUvk7m66pWjY8FzJbOgPL5PkvbIYuSQiITjIookjdYqfohqqpVKSjWiEg'); background-size: cover; background-position: center;"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="bg-primary p-4 rounded-full shadow-2xl shadow-primary/50 relative">
+<span class="material-symbols-outlined text-on-primary text-4xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div class="absolute top-0 left-0 w-full h-full bg-primary rounded-full animate-ping opacity-25"></div>
+</div>
+<div class="mt-4 bg-surface-container-lowest px-4 py-2 rounded-xl shadow-xl whitespace-nowrap text-sm font-bold border border-outline-variant/10">
+                        Main Blood Center
+                    </div>
+</div>
+<!-- Interactive Controls Mockup -->
+<div class="absolute bottom-6 right-6 flex flex-col gap-2">
+<button class="w-10 h-10 bg-surface-container-lowest rounded-lg shadow-lg flex items-center justify-center text-on-surface hover:bg-surface-container-high">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 bg-surface-container-lowest rounded-lg shadow-lg flex items-center justify-center text-on-surface hover:bg-surface-container-high">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 font-manrope text-sm tracking-wide">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-12">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-2">
+</div>
+<img alt="Blood_Donation Logo" class="h-14 w-auto object-contain mb-2" src="{% static 'logo.png' %}"/>
+<p class="text-slate-500 dark:text-slate-400 max-w-xs text-center md:text-left leading-relaxed">
+                    Connecting heroes with those in need. Join our community to ensure a steady life-pulse for everyone.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 underline-offset-4 hover:underline" href="">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 underline-offset-4 hover:underline" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 underline-offset-4 hover:underline" href="#">FAQ</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 underline-offset-4 hover:underline" href="#">Support</a>
+</div>
+<div class="text-center md:text-right">
+<p class="text-slate-500 dark:text-slate-400 mb-2">© 2024 Blood_Donation. Life-Pulse Editorial System.</p>
+<div class="flex gap-4 justify-center md:justify-end">
+<a class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+<a class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">rss_feed</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
